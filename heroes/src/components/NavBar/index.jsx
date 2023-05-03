@@ -7,12 +7,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartWidget from "../CartWidget";
+import { Link } from "react-router-dom";
 
 function NavScrollExample() {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Super Heores</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Rick y Morty</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,13 +21,13 @@ function NavScrollExample() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Hombres</Nav.Link>
-            <Nav.Link href="#action2">Mujeres</Nav.Link>
+            <Nav.Link as={Link} to="/category/human">
+              Humanos
+            </Nav.Link>
+            <Nav.Link as={Link} to="/category/alien">
+              Aliens
+            </Nav.Link>
             <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">No humanos </NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Informacion 
-              </NavDropdown.Item>
               <NavDropdown.Divider />
             </NavDropdown>
             <NavDropdown.Item>
