@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "../components/Root";
 import ItemListContainer from "../conteiners/ItemListContainer";
 import ItemDetailContainer from "../conteiners/ItemDetailContainer";
+import ItemTrolleyContainer from "../conteiners/ItemTrolleyContainer";
+
  
 
 const router =createBrowserRouter([
@@ -23,6 +25,12 @@ const router =createBrowserRouter([
                         {
                             path:"/detail/:id",
                             element: <ItemDetailContainer/>
+
+                        },
+                        {
+                            path:"/card",
+                            element: <ItemTrolleyContainer/>
+  
 
                         },
                     

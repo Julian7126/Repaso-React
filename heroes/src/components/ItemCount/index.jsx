@@ -1,67 +1,56 @@
-import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+// import Button from "react-bootstrap/Button";
+import "./styles.scss";
 
+const ItemCount = ({stock, initial, onAddStock }) => {
+  const [count, setCount] = useState(initial);
 
-
-
-
-const ItemCount = ({ stock, initial, onAdd }) => {
-
-
-    const [count, setCount] = useState(initial)
-
-
-        const handleClickCountMore= () => {
-
-        if (stock > count){
-            setCount(count +1);
-        }
-            
-
+  const handleClickCountMore = () => {
+    if (count < stock) {
+      setCount(count + 1);
     }
+  };
 
-
-        const handleClickCountLess=()=>{
-
-        if ( count > 1 ){
-            setCount(count -1);
-
-        }
-
-
-
+  const handleClickCountLess = () => {
+    if (count > initial) {
+      setCount(count - 1);
     }
+  };
 
+  return (
+    <>
+      <div>
+        <div className="counter-container">
+          <button
+            className="counter-button plus"
+            variant="outline-success"
+            onClick={handleClickCountMore}
+          >
+            +
+          </button>{" "}
+          <label className="contadorDeStock">{count}</label>
+          <button
+            className="counter-button minus"
+            variant="outline-warning"
+            onClick={handleClickCountLess}
+          >
+            -
+          </button>{" "}
+        </div>
 
-        const onAddstock =()=> {
-        onAdd(count);
+        <button
+          className="agregarAlCarrito"
+          type="submit"
+          variant="outline-dark"
+          onClick={()=>onAddStock(count)}
+        >
+         
+          Ready for your Cards? 
 
-    }
+        </button>
+      </div>
+    </>
+  );
+};
 
-
-
-
-
-    return (
-        <>
-            <div>
-                <span>Contador</span>
-                <div className="mb-2">
-                    <Button variant="outline-success" onClick={handleClickCountMore} >+</Button>{' '}
-
-                    <label className='contadorDeStock'>{count}</label>
-
-                    <Button variant="outline-warning" onClick={handleClickCountLess}>-</Button>{' '}
-
-                </div>
-
-                <Button variant="outline-dark" onClick={onAddstock}>Agregar al Carrito </Button>
-
-            </div>
-
-        </>
-
-    );
-}
-
-export default ItemCount
+export default ItemCount;

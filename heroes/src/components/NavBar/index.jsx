@@ -13,7 +13,7 @@ function NavScrollExample() {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">Rick y Morty</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Rick and Morty</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -27,7 +27,7 @@ function NavScrollExample() {
             <Nav.Link as={Link} to="/category/alien">
               Aliens
             </Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
+            <NavDropdown title="Location" id="navbarScrollingDropdown">
               <NavDropdown.Divider />
             </NavDropdown>
             <NavDropdown.Item>
