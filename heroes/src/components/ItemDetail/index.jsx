@@ -1,11 +1,17 @@
 import React from 'react'
+import "./styles.scss";
 
-const ItemDetail = () => {
+const ItemDetail = ({productDetail}) => {
+  console.log(productDetail);
   return (
-    <div>
-        <h1>Soy el detalle de un producto</h1>
+    <div className='item-detail'>
+  
+            
+      <img src={productDetail.image} width={300} alt="" /> 
+       <h1>{productDetail.name}</h1>
 
     </div>
+  
   )
 }
 

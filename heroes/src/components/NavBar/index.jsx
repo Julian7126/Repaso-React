@@ -41,7 +41,7 @@ function NavScrollExample() {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Busca tu heroe</Button>
+            <Button variant="outline-success">Find a Character</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

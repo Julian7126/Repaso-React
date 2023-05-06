@@ -1,36 +1,35 @@
-// import React, { useEffect, useState } from "react";
-// import "./styles.scss";
-// import ItemDetail from "../../components/ItemDetail";
+import { useState, useEffect } from "react";
+import ItemDetail from "../../components/ItemDetail";
+import { useParams } from "react-router-dom";
 
-// const ItemDetailConteiner = () => {
+const ItemDetailContainer = () => {
+  const [productDetail, setProductDetail] = useState([]);
 
+  const { id } = useParams();
 
-//   const [producto, setProducto] = useState([]);
+  console.log(id);
 
-//   useEffect(() => {
-//     getProductoById = async () => {
-//       try {
-//         const response = await fetch(
-//           `https://rickandmortyapi.com/api/character/${id}`
-//         );
-//         const data = await response.json();
-//           setProducto(data.results);
-//       } catch {
-//         <span>La app no esta disponible </span>;
-//       }
-//     };
+  useEffect(() => {
+    const getProductDetail = async () =>{
+        try {
+          const response = await fetch (`https://rickandmortyapi.com/api/character/${id}`)
+          const productDetail= await response.json()
+          setProductDetail(productDetail)
+          
+        } catch  {
+          <span>Material No disponible</span>
+          
+        }
+    }
+     getProductDetail();
 
+  }, [id]);
+
+  return (
     
-//       getProductoById()
+     <ItemDetail productDetail={productDetail}  />
+    
+  );
+};
 
-//   }, []);
-
-
-//   return <>
-
-//   <ItemDetail producto={producto}/>
-  
-//   </>;
-// };
-
-// export default ItemDetailConteiner;
+export default ItemDetailContainer;

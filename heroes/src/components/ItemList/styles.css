@@ -1,8 +1,10 @@
-.item-detail {
-  margin-top: 175px;
+.mapeo {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 55px;
+  flex-wrap: wrap;
+  padding: 30px;
+  gap: 20px;
 }/*# sourceMappingURL=styles.css.map */
