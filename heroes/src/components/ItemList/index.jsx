@@ -3,7 +3,7 @@ import Item from "../Item";
 import "./styles.scss";
 
 //Se encarga de hacer el map con los productos
-const ItemList = ({ products }) => {
+const ItemList =React.memo( ({ products }) => {
   return (
     <div className="mapeo">
       {products.map((product) => {
@@ -11,6 +11,6 @@ const ItemList = ({ products }) => {
       })}
     </div>
   );
-};
+});
 
 export default ItemList;

@@ -28,7 +28,7 @@ const router =createBrowserRouter([
 
                         },
                         {
-                            path:"/card",
+                            path:"/cart",
                             element: <ItemTrolleyContainer/>
   
 
