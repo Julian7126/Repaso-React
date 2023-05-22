@@ -2,42 +2,67 @@ import React, { useEffect, useState } from "react";
 import "../ItemListContainer/styles.scss";
 import ItemList from "../../components/ItemList";
 import { useParams } from "react-router-dom";
+import { collection, query, getDocs, where } from "firebase/firestore";
+import { db } from "../../FireBase/config";
+import { capitalizeFirstLetter } from "../../utils/capitalCase";
+import saveProductsFirebase from "../../FireBase/services";
 
 const ItemListContainer = () => {
-
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { categoryId } = useParams();
-
-  console.log(categoryId);
-
-
   useEffect(() => {
     (async () => {
       try {
-        let response;
+        setLoading(true);
+
+        // let response;
+        // if (categoryId) {
+        //   response = await fetch(
+        //     `https://rickandmortyapi.com/api/character/?species=${categoryId}`);
+        // } else {
+        //   response = await fetch(`https://rickandmortyapi.com/api/character`);
+        // }
+
+        let q;
         if (categoryId) {
-          response = await fetch(
-            `https://rickandmortyapi.com/api/character/?species=${categoryId}`);
+          const CapitalLetter = capitalizeFirstLetter();
+          q = query(
+            collection(db, "products"),where("species", "===", CapitalLetter())
+          );
         } else {
-          response = await fetch(`https://rickandmortyapi.com/api/character`);
+          q = query(collection(db, "products"));
         }
 
-        const data = await response.json();
-
-        console.log(data);
-        setProducts(data.results);
-      } catch {
-        <span>La app no esta disponible </span>;
+        //2do paso: realizar la query
+        const querySnapshot = await getDocs(q);
+        const productosFirebase = [];
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          productosFirebase.push({ ...doc.data(), id: doc.id });
+        });
+        setProducts(productosFirebase);
+      } catch (error) {
+        console.log(error);
       }
     })();
   }, [categoryId]);
 
+  const handleAddProducts = () => {
+    saveProductsFirebase();
+  };
+
   return (
     <>
-      <div className="contenedor-padre">
-        <ItemList products={products} />
-      </div>
+            <ItemList products={products} />
+
+{/*       
+        // <button onClick={handleAddProducts}>
+        //   Save characters automatically in firebase
+        // </button>
+       */}
     </>
   );
 };
